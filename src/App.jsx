@@ -3,7 +3,6 @@ import 'App.scss';
 
 import { GameContext } from 'contexts/GameContext';
 import Input from 'components/MainForm';
-import Connecting from 'components/Connecting';
 
 function App() {
   const { gameState, setGameState, glitching, game } =
