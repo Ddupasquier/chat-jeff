@@ -16,8 +16,6 @@ export const GameContext = createContext({});
 
 export const GameProvider = ({ children }) => {
   const [inputAllowed, setInputAllowed] = useState(true); // used to determine if the user can input
-  const [username, setUsername] = useState(''); // username
-  const [password, setPassword] = useState(''); // password
   const [inputValue, setInputValue] = useState(''); // player input
   const [game, setGame] = useState([<Intro />]); // game is an array of views
   const [firstLogin, setFirstLogin] = useState(true); // used to determine if the user has logged in for the first time
@@ -48,15 +46,13 @@ export const GameProvider = ({ children }) => {
         id: 1,
         puzzle: puzzle1(
           gameState.lastInput,
-          username,
-          password,
           failSound,
           successSound,
           readyForInput,
         ),
       },
     ],
-    [gameState, password, username]
+    [gameState]
   );
 
   useEffect(() => {

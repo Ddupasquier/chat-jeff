@@ -8,8 +8,6 @@ import {
 
 export const puzzle1 = (
   lastInput,
-  username,
-  password,
   failSound,
   successSound,
   readyForInput
@@ -339,6 +337,16 @@ export const puzzle1 = (
             `${outputPrefix} Command Submission '${lastInput}' Not Recognized`,
             spacer,
           ],
+        },
+      },
+    },
+    {
+      id: 10,
+      dialog: {
+        expectedInput: 'you\'llneverGue$$',
+        responses: {
+          successResponse: [''],
+          failureResponse: [() => failSound.play()],
         },
       },
     },
