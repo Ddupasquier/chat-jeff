@@ -10,9 +10,6 @@ import {
 } from 'sounds/sounds';
 
 import { puzzle1 } from 'puzzles/puzzle1';
-import { puzzle2 } from 'puzzles/puzzle2';
-import { puzzle3 } from 'puzzles/puzzle3';
-import { puzzle4 } from 'puzzles/puzzle4';
 import Intro from 'views/Intro/Intro';
 import Dialog from 'components/Dialog';
 
@@ -56,38 +53,6 @@ export const GameProvider = ({ children }) => {
           failSound,
           successSound,
           readyForInput,
-          setGlitching
-        ),
-      },
-      {
-        id: 2,
-        puzzle: puzzle2(
-          gameState.playerInput,
-          failSound,
-          successSound,
-          readyForInput
-        ),
-      },
-      {
-        id: 3,
-        puzzle: puzzle3(
-          gameState.playerInput,
-          setGlitching,
-          failSound,
-          successSound,
-          readyForInput
-        ),
-      },
-      {
-        id: 4,
-        puzzle: puzzle4(
-          gameState.playerInput,
-          setGlitching,
-          failSound,
-          successSound,
-          readyForInput,
-          setGameState,
-          gameState,
         ),
       },
     ],
@@ -146,7 +111,7 @@ export const GameProvider = ({ children }) => {
         return null;
       });
 
-    if (gameState.playerInput.toLowerCase() === 'login' && firstLogin) {
+    if (gameState.playerInput.toLowerCase() === '3512076170' && firstLogin) {
       setGameState({
         ...gameState,
         playerInput: '',
@@ -163,7 +128,7 @@ export const GameProvider = ({ children }) => {
       gameState.gameStarted &&
       gameState.playerInput === gameState.currentExpectedInput &&
       gameState.lastInput.toLowerCase() !== 'music' &&
-      gameState.playerInput.toLowerCase() !== 'login' &&
+      gameState.playerInput.toLowerCase() !== '3512076170' &&
       gameState.playerInput.toLowerCase() !== 'hint'
     ) {
       if (successResponse) {
@@ -189,7 +154,7 @@ export const GameProvider = ({ children }) => {
       gameState.gameStarted &&
       gameState.playerInput !== gameState.currentExpectedInput &&
       gameState.lastInput.toLowerCase() !== 'music' &&
-      gameState.playerInput.toLowerCase() !== 'login' &&
+      gameState.playerInput.toLowerCase() !== '3512076170' &&
       gameState.playerInput.toLowerCase() !== 'hint'
     ) {
       if (failureResponse) {
