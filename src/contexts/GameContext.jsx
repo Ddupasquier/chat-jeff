@@ -6,7 +6,6 @@ import {
   readyForInput,
   successSound,
   alabasterMusic,
-  intenseMusic,
 } from 'sounds/sounds';
 
 import { puzzle1 } from 'puzzles/puzzle1';
@@ -186,13 +185,6 @@ export const GameProvider = ({ children }) => {
       gameState.musicPlaying
         ? gameState.currentMusic.pause()
         : (gameState.currentMusic.loop = true) && gameState.currentMusic.play();
-    }
-
-    if (gameState.currentPuzzle === 4) {
-      setGameState({
-        ...gameState,
-        currentMusic: intenseMusic,
-      });
     }
 
     // eslint-disable-next-line react-hooks/exhaustive-deps

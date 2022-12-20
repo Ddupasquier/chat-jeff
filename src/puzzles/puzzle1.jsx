@@ -13,8 +13,6 @@ export const puzzle1 = (
   failSound,
   successSound,
   readyForInput,
-  setGlitching
-  // returnUsername
 ) => {
   return [
     {
@@ -30,7 +28,7 @@ export const puzzle1 = (
             'connecting',
             spacer,
             `${ax7Output} You think we have a mole?`,
-            `${alabasterOutput} I think somone is feeding info to the CIA.`,
+            `${alabasterOutput} I think someone is feeding info to the CIA.`,
             `${alabasterOutput} There has been minimal movement on their servers... until today.`,
             `${alabasterOutput} and all at once...`,
             `${ax7Output} Who do you think it is?`,
@@ -135,12 +133,12 @@ export const puzzle1 = (
             `${alabasterOutput} He's here already`,
             `${alabasterOutput} Go to this chat room. I will meet you there.`,
             `${alabasterOutput} ENCRYPTED URL: https://66737-26553-26594-46592`,
-            `${outputPrefix} USER @Ax7 DISCONECTED`,
+            `${outputPrefix} USER @Ax7 DISCONNECTED`,
             `${alabasterOutput} You are too close for comfort C.I.A man`,
-            `${alabasterOutput} Do you realy think you have what it takes to catch me?`,
+            `${alabasterOutput} Do you really think you have what it takes to catch me?`,
             `${alabasterOutput} How long have you been trying already?`,
             `${alabasterOutput} Best to just give up now.`,
-            `${outputPrefix} ALABASTER DICONNECTED`,
+            `${outputPrefix} ALABASTER DISCONNECTED`,
             `${outputPrefix} CHATROOM CLOSED`,
             `${outputPrefix} YOU HAVE BEEN DISCONNECTED`,
             spacer,
@@ -196,7 +194,7 @@ export const puzzle1 = (
             spacer,
             `${alabasterOutput} Now go. I've left clues for you to find me.`,
             `${alabasterOutput} Oh... Look who's here`,
-            `${outputPrefix} USER @Ax7 DISCONECTED`,
+            `${outputPrefix} USER @Ax7 DISCONNECTED`,
             `${alabasterOutput} That took you longer than I expected`,
             `${alabasterOutput} Maybe I don't need to worry at all`,
             `${alabasterOutput} I wager my disciple can find me hours before you do.`,
@@ -204,7 +202,7 @@ export const puzzle1 = (
             `${alabasterOutput} Except watch it all crumble`,
             `${alabasterOutput} Alright... I grow tired of this`,
             `${alabasterOutput} ENCRYPTED URL: https://20693-10782-40621-12479`,
-            `${outputPrefix} ALABASTER DICONNECTED`,
+            `${outputPrefix} ALABASTER DISCONNECTED`,
             `${outputPrefix} CHATROOM CLOSED`,
             `${outputPrefix} YOU HAVE BEEN DISCONNECTED`,
             spacer,
