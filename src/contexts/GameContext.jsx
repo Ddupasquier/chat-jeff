@@ -1,12 +1,11 @@
 import React, { createContext, useState, useEffect, useMemo } from 'react';
-import { userInputPrefix, spacer, outputPrefix } from 'utils';
 import 'App.scss';
 
 import {
   failSound,
   readyForInput,
   successSound,
-  mainMusic,
+  alabasterMusic,
   intenseMusic,
 } from 'sounds/sounds';
 
@@ -20,13 +19,11 @@ import Dialog from 'components/Dialog';
 export const GameContext = createContext({});
 
 export const GameProvider = ({ children }) => {
-  const [gameHidden, setGameHidden] = useState(false);
   const [username, setUsername] = useState(''); // username
   const [password, setPassword] = useState(''); // password
   const [inputValue, setInputValue] = useState(''); // player input
   const [game, setGame] = useState([<Intro />]); // game is an array of views
   const [firstLogin, setFirstLogin] = useState(true); // used to determine if the user has logged in for the first time
-  const [firstJoke, setFirstJoke] = useState(true); // used to determine if the user has heard the first joke
   const [glitching, setGlitching] = useState(false); // used to determine if the screen is glitching
   const [startTime, setStartTime] = useState(0); // used to determine the start time of the game
   const [gameState, setGameState] = useState({
@@ -40,18 +37,13 @@ export const GameProvider = ({ children }) => {
     currentPuzzle: 0,
     currentPuzzleIndex: 0,
     musicPlaying: false,
-    currentMusic: mainMusic,
+    currentMusic: alabasterMusic,
   });
 
   useEffect(() => {
     setStartTime(Date.now());
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [gameState.gameStarted]);
-
-  // const returnUsername = () => {
-  //   console.log(inputValue)
-  //   return inputValue
-  // }
 
   const timeline = useMemo(
     () => [
@@ -96,7 +88,6 @@ export const GameProvider = ({ children }) => {
           readyForInput,
           setGameState,
           gameState,
-          setGameHidden
         ),
       },
     ],
@@ -221,27 +212,6 @@ export const GameProvider = ({ children }) => {
       ]);
     }
 
-    if (
-      gameState.playerInput === 'https://75896-29742-69504-22231' &&
-      firstJoke
-    ) {
-      const joke = [
-        `${userInputPrefix} '${gameState.lastInput}'`,
-        `${outputPrefix} Decrypting...`,
-        'loading',
-        `${outputPrefix} Wait...`,
-        `${outputPrefix} This is the EXAMPLE`,
-        `${outputPrefix} VERY FUNNY, Mr. Funny Guy`,
-        spacer,
-        `${outputPrefix} ENTER "A REAL" URL TO HACK OR DECRYPT`,
-        spacer,
-        () => readyForInput.play(),
-      ];
-
-      setGame([...game, <Dialog response={joke} />]);
-      setFirstJoke(false);
-    }
-
     if (gameState.playerInput.toLowerCase() === 'music') {
       setGameState({
         ...gameState,
@@ -273,8 +243,7 @@ export const GameProvider = ({ children }) => {
         game,
         inputValue,
         setInputValue,
-        gameHidden,
-        startTime
+        startTime,
       }}
     >
       {children}

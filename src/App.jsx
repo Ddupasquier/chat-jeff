@@ -3,11 +3,9 @@ import 'App.scss';
 
 import { GameContext } from 'contexts/GameContext';
 import Input from 'components/MainForm';
-import EndGame from 'views/EndGame/EndGame';
-import LoadingAnimation from 'components/LoadingAnimation';
 
 function App() {
-  const { gameState, setGameState, glitching, game, gameHidden } =
+  const { gameState, setGameState, glitching, game } =
     useContext(GameContext);
 
   const handleSubmit = (inputValue) => {
@@ -24,13 +22,6 @@ function App() {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
   }, [game]);
 
-  const rebootStyle = {
-    position: 'absolute',
-    top: '50%',
-    left: '50%',
-    transform: 'translate(-50%, -50%)',
-  };
-
   return (
     <div className="App">
       <div className={glitching ? 'game glitch' : 'game'}>
@@ -46,15 +37,9 @@ function App() {
             {game &&
               !gameState.gameEnded &&
               game.map((view, index) => <div key={index}>{view}</div>)}
-            {gameState.gameEnded && <EndGame />}
             <div ref={messagesEndRef} />
           </div>
           {!gameState.gameEnded && <Input handleSubmit={handleSubmit} />}
-          {gameHidden && (
-            <div className="rebooting" style={rebootStyle}>
-              <LoadingAnimation />
-            </div>
-          )}
         </>
       </div>
     </div>

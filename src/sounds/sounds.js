@@ -1,7 +1,3 @@
-export const mainMusic = new Audio(
-  'https://cia-9d562a98.s3.us-west-1.amazonaws.com/GameAssets/SoundFX/Daffodil362MainMusic.wav'
-);
-
 export const alabasterMusic = new Audio(
   'https://cia-9d562a98.s3.us-west-1.amazonaws.com/GameAssets/SoundFX/Daffodil362EndMusic.wav'
 );

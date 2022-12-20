@@ -13,7 +13,7 @@ $gray: #797979;
 
 .App {
   position: fixed;
-  background-image: url('https://esc-room-games.s3.us-west-1.amazonaws.com/Daffodil362/Assets/BG.jpg');
+  background-image: url('https://esc-room-games.s3.us-west-1.amazonaws.com/Daffodil362/Assets/Grid%202.jpg');
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
@@ -21,13 +21,13 @@ $gray: #797979;
   width: 100vw;
   display: flex;
   flex-direction: column;
-  color: $green;
+  color: $blue;
   overflow: auto;
   font-family: IBMVGA8, consolas, Charcoal, sans-serif;
 }
 
 h1 {
-  color: $green;
+  color: $blue;
   font-family: IBMVGA8, consolas, Charcoal, sans-serif;
   white-space: nowrap;
   font-family: monospace;
@@ -42,12 +42,13 @@ h1 {
   font-family: monospace;
   white-space: pre;
   line-height: 0.9rem;
+  font-size: 1rem;
 }
 
 .text-line,
 .loading-animation,
 a {
-  color: $green;
+  color: $blue;
   font-family: IBMVGA8, consolas, Charcoal, sans-serif;
   white-space: nowrap;
   font-size: 2rem;
@@ -73,7 +74,7 @@ a {
   height: 5rem;
   padding: 0 1rem;
   background-color: #333333;
-  color: $green;
+  color: $blue;
   font-family: IBMVGA8, consolas, Charcoal, sans-serif;
   font-size: 1.4rem;
   white-space: pre;
@@ -97,7 +98,7 @@ a {
   animation-timing-function: linear;
   display: block;
   width: 100%;
-  background-image: url('https://esc-room-games.s3.us-west-1.amazonaws.com/Daffodil362/Assets/BG.jpg');
+  background-image: url('https://esc-room-games.s3.us-west-1.amazonaws.com/Daffodil362/Assets/Grid%202.jpg');
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
