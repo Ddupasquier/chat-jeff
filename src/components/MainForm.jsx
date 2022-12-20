@@ -2,10 +2,10 @@ import React, { useEffect, useContext } from 'react';
 import { GameContext } from 'contexts/GameContext';
 
 const MainForm = ({ handleSubmit }) => {
-  const { inputValue, setInputValue } = useContext(GameContext);
+  const { inputValue, setInputValue, inputAllowed } = useContext(GameContext);
 
     const handleKeyDown = (e) => {
-      if (e.key === 'Enter') {
+      if (e.key === 'Enter' && inputAllowed) {
         e.preventDefault();
         handleSubmit(inputValue);
         setInputValue('');

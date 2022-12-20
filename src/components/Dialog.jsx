@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef, useContext } from 'react';
 import { GameContext } from 'contexts/GameContext';
-import LoadingAnimation from './LoadingAnimation';
 import 'App.scss';
+import Connecting from './Connecting';
 
 function Dialog({ response }) {
   const { gameHidden } = useContext(GameContext);
@@ -17,14 +17,20 @@ function Dialog({ response }) {
     if (dialog.length > 0) {
       for (let i = 0; i < dialog.length; i++) {
         setTimeout(() => {
-          if (dialog[i] === 'loading') {
-            setRendered((prev) => [...prev, <LoadingAnimation key={i} />]);
-          } else if (dialog[i].includes('https')) {
+          if (dialog[i] === 'connecting') {
             setRendered((prev) => [
               ...prev,
-              <a href={dialog[i]} target="_blank" rel="noreferrer" key={i}>
-                {dialog[i]}
-              </a>,
+              <Connecting key={i} text={'Connecting'} />,
+            ]);
+          } else if (dialog[i] === 'locating') {
+            setRendered((prev) => [
+              ...prev,
+              <Connecting key={i} text={'Locating Chatroom'} />,
+            ]);
+          } else if (dialog[i] === 'typing') {
+            setRendered((prev) => [
+              ...prev,
+              <Connecting key={i} text={'Typing'} />,
             ]);
           } else {
             setRendered((prev) => [

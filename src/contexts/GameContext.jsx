@@ -15,6 +15,7 @@ import Dialog from 'components/Dialog';
 export const GameContext = createContext({});
 
 export const GameProvider = ({ children }) => {
+  const [inputAllowed, setInputAllowed] = useState(true); // used to determine if the user can input
   const [username, setUsername] = useState(''); // username
   const [password, setPassword] = useState(''); // password
   const [inputValue, setInputValue] = useState(''); // player input
@@ -58,34 +59,8 @@ export const GameProvider = ({ children }) => {
     [gameState, password, username]
   );
 
-  const incrementPuzzle = (puzzle, puzzleIndex) => {
-    setGameState({
-      ...gameState,
-      currentPuzzle: puzzle,
-      currentPuzzleIndex: puzzleIndex,
-      currentExpectedInput:
-        timeline[puzzle]?.puzzle[puzzleIndex].dialog.expectedInput,
-    });
-  };
-
-  // const checkIfUsername = () => {
-  //   if (gameState.currentExpectedInput === "username") {
-  //     const name = gameState.lastInput;
-  //     setUsername(name);
-  //     console.log(gameState.lastInput, "last input 1")
-
-  //     setGameState({
-  //       ...gameState,
-  //       currentExpectedInput: username,
-  //     });
-
-  //   }
-  //   console.log(gameState.lastInput, "last input 2")
-  //   console.log(gameState.currentExpectedInput, "current expected input 2")
-
-  // };
-
   useEffect(() => {
+    // * THIS IS THE FUNCTION THAT GENERATES THE SUCCESS RESPONSE
     const successResponse = () =>
       timeline[gameState.currentPuzzle].puzzle[
         gameState.currentPuzzleIndex
@@ -98,6 +73,7 @@ export const GameProvider = ({ children }) => {
         return null;
       });
 
+    // * THIS IS THE FUNCTION THAT GENERATES THE FAILURE RESPONSE
     const failureResponse = () =>
       timeline[gameState.currentPuzzle].puzzle[
         gameState.currentPuzzleIndex
@@ -110,6 +86,7 @@ export const GameProvider = ({ children }) => {
         return null;
       });
 
+    // * THIS IS THE FUNCTION THAT RUNS WHEN THE PLAYER MAKES THEIR FIRST SUCCESS INPUT
     if (gameState.playerInput.toLowerCase() === '3512076170' && firstLogin) {
       setGameState({
         ...gameState,
@@ -123,6 +100,7 @@ export const GameProvider = ({ children }) => {
       setFirstLogin(false);
     }
 
+    // * THIS IS THE FUNCTION THAT RUNS WHEN THE PLAYER INPUT EQUALS SUCCESS
     if (
       gameState.gameStarted &&
       gameState.playerInput === gameState.currentExpectedInput &&
@@ -137,7 +115,8 @@ export const GameProvider = ({ children }) => {
         gameState.currentPuzzleIndex ===
         timeline[gameState.currentPuzzle].puzzle.length - 1
       ) {
-        incrementPuzzle(gameState.currentPuzzle + 1, 0);
+        // ! THIS IS WHERE YOU WOULD ADD A NEW PUZZLE
+        setInputAllowed(false);
       } else {
         setGameState((prev) => ({
           ...prev,
@@ -149,6 +128,7 @@ export const GameProvider = ({ children }) => {
       }
     }
 
+    // * THIS IS THE FUNCTION THAT RUNS WHEN THE PLAYER INPUT EQUALS FAILURE
     if (
       gameState.gameStarted &&
       gameState.playerInput !== gameState.currentExpectedInput &&
@@ -161,6 +141,7 @@ export const GameProvider = ({ children }) => {
       }
     }
 
+    // * THIS IS THE FUNCTION THAT RUNS WHEN THE PLAYER INPUTS HINT
     if (gameState.playerInput.toLowerCase() === 'hint') {
       setGame([
         ...game,
@@ -176,6 +157,7 @@ export const GameProvider = ({ children }) => {
       ]);
     }
 
+    // * THIS IS THE FUNCTION THAT RUNS WHEN THE PLAYER INPUTS MUSIC
     if (gameState.playerInput.toLowerCase() === 'music') {
       setGameState({
         ...gameState,
@@ -201,6 +183,7 @@ export const GameProvider = ({ children }) => {
         inputValue,
         setInputValue,
         startTime,
+        inputAllowed
       }}
     >
       {children}

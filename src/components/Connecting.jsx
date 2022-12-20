@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
+import 'App.scss';
 
-const Connecting = () => {
+const Connecting = ({text}) => {
   const [connecting, setConnecting] = useState(true);
 
   useEffect(() => {
@@ -10,17 +11,13 @@ const Connecting = () => {
     return () => clearTimeout(timer);
   }, []);
 
-  return connecting ? (
-    <div className="connecting">
-      <div className="connecting__text">Connecting...</div>
-      <div className="connecting__dots">
-        <div className="connecting__dot"></div>
-        <div className="connecting__dot"></div>
-        <div className="connecting__dot"></div>
+  return (
+    connecting && (
+      <div className="connecting">
+        <div>{text}</div>
+        <div className="loading-elips" />
       </div>
-    </div>
-  ) : (
-    'Connected to ChatRoom 15-68370223-23'
+    )
   );
 };
 

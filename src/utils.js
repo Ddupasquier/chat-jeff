@@ -1,7 +1,7 @@
-export const userInputPrefix = 'D:\\User\\input ';
-export const outputPrefix = 'D:\\Output ';
-export const alabasterOutput = 'D:\\UserAlabaster > ';
-export const ax7Output = 'D:\\UserAx7 > ';
+export const userInputPrefix = 'D:\\User\\input';
+export const outputPrefix = 'D:\\Output';
+export const alabasterOutput = 'D:\\UserAlabaster>';
+export const ax7Output = 'D:\\UserAx7>';
 export const spacer =
   '..........................................................';
 
