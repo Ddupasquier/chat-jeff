@@ -5,7 +5,6 @@ import {
   failSound,
   readyForInput,
   successSound,
-  alabasterMusic,
 } from 'sounds/sounds';
 
 import { puzzle1 } from 'puzzles/puzzle1';
@@ -32,7 +31,6 @@ export const GameProvider = ({ children }) => {
     currentPuzzle: 0,
     currentPuzzleIndex: 0,
     musicPlaying: false,
-    currentMusic: alabasterMusic,
   });
 
   useEffect(() => {
@@ -88,11 +86,7 @@ export const GameProvider = ({ children }) => {
         ...gameState,
         playerInput: '',
         gameStarted: true,
-        musicPlaying: true,
       });
-      gameState.musicPlaying
-        ? gameState.currentMusic.pause()
-        : (gameState.currentMusic.loop = true) && gameState.currentMusic.play();
       setFirstLogin(false);
     }
 
@@ -100,7 +94,6 @@ export const GameProvider = ({ children }) => {
     if (
       gameState.gameStarted &&
       gameState.playerInput === gameState.currentExpectedInput &&
-      gameState.lastInput.toLowerCase() !== 'music' &&
       gameState.playerInput.toLowerCase() !== '3512076170' &&
       gameState.playerInput.toLowerCase() !== 'hint'
     ) {
@@ -128,7 +121,6 @@ export const GameProvider = ({ children }) => {
     if (
       gameState.gameStarted &&
       gameState.playerInput !== gameState.currentExpectedInput &&
-      gameState.lastInput.toLowerCase() !== 'music' &&
       gameState.playerInput.toLowerCase() !== '3512076170' &&
       gameState.playerInput.toLowerCase() !== 'hint'
     ) {
@@ -151,18 +143,6 @@ export const GameProvider = ({ children }) => {
           ]}
         />,
       ]);
-    }
-
-    // * THIS IS THE FUNCTION THAT RUNS WHEN THE PLAYER INPUTS MUSIC
-    if (gameState.playerInput.toLowerCase() === 'music') {
-      setGameState({
-        ...gameState,
-        playerInput: '',
-        musicPlaying: !gameState.musicPlaying,
-      });
-      gameState.musicPlaying
-        ? gameState.currentMusic.pause()
-        : (gameState.currentMusic.loop = true) && gameState.currentMusic.play();
     }
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
