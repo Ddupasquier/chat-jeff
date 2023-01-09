@@ -4,13 +4,15 @@ import { GameContext } from 'contexts/GameContext';
 const MainForm = ({ handleSubmit }) => {
   const { inputValue, setInputValue, inputAllowed } = useContext(GameContext);
 
-    const handleKeyDown = (e) => {
-      if (e.key === 'Enter' && inputAllowed) {
-        e.preventDefault();
-        handleSubmit(inputValue);
-        setInputValue('');
-      }
-    };
+  const handleKeyDown = (e) => {
+    if (e.key === 'Enter' && inputAllowed) {
+      e.preventDefault();
+      handleSubmit(inputValue);
+      setInputValue('');
+    } else if (e.key === 'Enter' && !inputAllowed) {
+      e.preventDefault();
+    }
+  };
 
   useEffect(() => {
     const audio = new Audio(

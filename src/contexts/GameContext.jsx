@@ -94,8 +94,7 @@ export const GameProvider = ({ children }) => {
     if (
       gameState.gameStarted &&
       gameState.playerInput === gameState.currentExpectedInput &&
-      gameState.playerInput.toLowerCase() !== '3512076170' &&
-      gameState.playerInput.toLowerCase() !== 'hint'
+      gameState.playerInput.toLowerCase() !== '3512076170'
     ) {
       if (successResponse) {
         setGame([...game, <Dialog response={successResponse} />]);
@@ -121,28 +120,11 @@ export const GameProvider = ({ children }) => {
     if (
       gameState.gameStarted &&
       gameState.playerInput !== gameState.currentExpectedInput &&
-      gameState.playerInput.toLowerCase() !== '3512076170' &&
-      gameState.playerInput.toLowerCase() !== 'hint'
+      gameState.playerInput.toLowerCase() !== '3512076170'
     ) {
       if (failureResponse) {
         setGame([...game, <Dialog response={failureResponse} />]);
       }
-    }
-
-    // * THIS IS THE FUNCTION THAT RUNS WHEN THE PLAYER INPUTS HINT
-    if (gameState.playerInput.toLowerCase() === 'hint') {
-      setGame([
-        ...game,
-        <Dialog
-          response={[
-            `Your hint code is ${
-              timeline[gameState.currentPuzzle].puzzle[
-                gameState.currentPuzzleIndex
-              ].dialog.hint
-            }`,
-          ]}
-        />,
-      ]);
     }
 
     // eslint-disable-next-line react-hooks/exhaustive-deps

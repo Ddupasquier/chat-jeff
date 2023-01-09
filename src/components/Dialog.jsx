@@ -4,7 +4,7 @@ import 'App.scss';
 import Connecting from './Connecting';
 
 function Dialog({ response }) {
-  const { gameHidden } = useContext(GameContext);
+  const { gameHidden, setInputAllowed } = useContext(GameContext);
   const [dialog, setDialog] = useState([]);
   const [rendered, setRendered] = useState([]);
 
@@ -14,6 +14,8 @@ function Dialog({ response }) {
   }, []);
 
   useEffect(() => {
+    let lineCount = 0;
+    setInputAllowed(false);
     if (dialog.length > 0) {
       for (let i = 0; i < dialog.length; i++) {
         setTimeout(() => {
@@ -41,7 +43,13 @@ function Dialog({ response }) {
             ]);
           }
         }, 1000 * i);
+        lineCount = i * 1000;
       }
+    }
+    if (dialog.length > 0) {
+      setTimeout(() => {
+        setInputAllowed(true);
+      }, lineCount);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [dialog]);
