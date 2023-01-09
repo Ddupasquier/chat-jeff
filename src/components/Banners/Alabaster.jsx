@@ -1,4 +1,5 @@
 import React from 'react';
+import 'App.scss';
 
 /* <h3 class="hidden" id="AlabasterHeader">.eeeeee..eee.....eeeeee..eeeeeee...eeeeee...eeeeee.eeeeeeeee.eeeeee.eeeeeee.....eee..eee..eee.eee..eee.eee.eeeeeeeee.eeeeee.
 @@@@@@@@:@@@::::@@@@@@@@:@@@@@@@@:@@@@@@@@:@@@@@@@:@@@@@@@@@:@@@@@@:@@@@@@@@::::@@@::@@@::@@@:@@@::@@@:@@@:@@@@@@@@@:@@@@@@:
@@ -55,7 +56,7 @@ const Alabaster = () => {
   return (
     <div aria-label="Alabaster">
       {bannerTxt.map((data, index) => (
-        <h1 key={index} aria-hidden="true" className="blue-h1">
+        <h1 key={index} aria-hidden="true">
           {data.line}
         </h1>
       ))}
