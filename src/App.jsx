@@ -3,10 +3,10 @@ import 'App.scss';
 
 import { GameContext } from 'contexts/GameContext';
 import Input from 'components/MainForm';
+import Head from 'components/head/Head';
 
 function App() {
-  const { gameState, setGameState, glitching, game } =
-    useContext(GameContext);
+  const { gameState, setGameState, game } = useContext(GameContext);
 
   const handleSubmit = (inputValue) => {
     setGameState({
@@ -24,14 +24,15 @@ function App() {
 
   return (
     <div className="App">
-      <div className={glitching ? 'game glitch' : 'game'}>
+      <Head />
+      <div className="game">
         <>
           <div
             style={{
               display: 'flex',
               flexDirection: 'column',
-              marginBottom: '5rem',
-              paddingLeft: '2rem',
+              padding: '6rem 0 6rem 2rem',
+              overflowY: 'auto'
             }}
           >
             {game &&
@@ -39,9 +40,9 @@ function App() {
               game.map((view, index) => <div key={index}>{view}</div>)}
             <div ref={messagesEndRef} />
           </div>
-          {!gameState.gameEnded && <Input handleSubmit={handleSubmit} />}
         </>
       </div>
+      {!gameState.gameEnded && <Input handleSubmit={handleSubmit} />}
     </div>
   );
 }

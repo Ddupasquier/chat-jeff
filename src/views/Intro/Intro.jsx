@@ -1,18 +1,11 @@
 import React from 'react';
-import { introData } from './introData';
 import 'App.scss';
-import Alabaster from 'components/Banners/Alabaster';
+import JeffResponse from 'components/response/JeffResponse';
 
 const Intro = () => {
-
   return (
     <>
-      <Alabaster />
-      {introData.map((data, index) => (
-        <div key={index} className="text-line" aria-label={data}>
-          {data}
-        </div>
-      ))}
+      <JeffResponse response="Hello, I am Jeff. Who do I have the pleasure of speaking with today?" />
     </>
   );
 };

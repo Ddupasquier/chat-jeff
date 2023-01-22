@@ -1,7 +1,8 @@
 import React, { useState, useEffect, useRef, useContext } from 'react';
 import { GameContext } from 'contexts/GameContext';
 import 'App.scss';
-import Connecting from './Connecting';
+import UserResponse from './response/UserResponse';
+import JeffResponse from './response/JeffResponse';
 
 function Dialog({ response }) {
   const { gameHidden, setInputAllowed } = useContext(GameContext);
@@ -13,33 +14,26 @@ function Dialog({ response }) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  const splitResponse = (response) => {
+    const split = response.split(': ');
+    return split[1];
+  };
+
   useEffect(() => {
     let lineCount = 0;
     setInputAllowed(false);
     if (dialog.length > 0) {
       for (let i = 0; i < dialog.length; i++) {
         setTimeout(() => {
-          if (dialog[i] === 'connecting') {
+          if (dialog[i].includes('Jeff: ')) {
             setRendered((prev) => [
               ...prev,
-              <Connecting key={i} text={'Connecting'} />,
+              <JeffResponse key={i} response={splitResponse(dialog[i])} />,
             ]);
-          } else if (dialog[i] === 'locating') {
+          } else if (dialog[i].includes('User: ')) {
             setRendered((prev) => [
               ...prev,
-              <Connecting key={i} text={'Locating Chatroom'} />,
-            ]);
-          } else if (dialog[i] === 'typing') {
-            setRendered((prev) => [
-              ...prev,
-              <Connecting key={i} text={'Typing'} />,
-            ]);
-          } else {
-            setRendered((prev) => [
-              ...prev,
-              <div key={i} className="text-line">
-                {dialog[i]}
-              </div>,
+              <UserResponse key={i} response={splitResponse(dialog[i])} />,
             ]);
           }
         }, 1000 * i);
