@@ -3,6 +3,7 @@ import { GameContext } from 'contexts/GameContext';
 import 'App.scss';
 import UserResponse from './response/UserResponse';
 import JeffResponse from './response/JeffResponse';
+import SystemResponse from './response/SystemResponse';
 
 function Dialog({ response }) {
   const { gameHidden, setInputAllowed } = useContext(GameContext);
@@ -26,14 +27,28 @@ function Dialog({ response }) {
       for (let i = 0; i < dialog.length; i++) {
         setTimeout(() => {
           if (dialog[i].includes('Jeff: ')) {
+            const responseLength = response().length;
+            const dialoglength = dialog[i].length;
+
+            console.log(responseLength, dialoglength);
             setRendered((prev) => [
               ...prev,
-              <JeffResponse key={i} response={splitResponse(dialog[i])} />,
+              <JeffResponse
+                key={i}
+                response={splitResponse(dialog[i])}
+                responseLength={responseLength}
+                dialogLength={dialoglength}
+              />,
             ]);
           } else if (dialog[i].includes('User: ')) {
             setRendered((prev) => [
               ...prev,
               <UserResponse key={i} response={splitResponse(dialog[i])} />,
+            ]);
+          } else if (dialog[i].includes('Russian:')) {
+            setRendered((prev) => [
+              ...prev,
+              <SystemResponse key={i} response={splitResponse(dialog[i])} />,
             ]);
           }
         }, 1000 * i);

@@ -1,40 +1,52 @@
+@mixin avatar {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  display: block;
+}
+
+@mixin bubble {
+  border-radius: 10px;
+  padding: 20px 25px;
+  margin: 10px;
+  width: 100%;
+  max-width: 500px;
+  position: relative;
+}
+
+@mixin bubble-arrow {
+  position: absolute;
+  width: 0;
+  height: 0;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
 .user-response {
   display: flex;
   align-items: center;
   gap: 2rem;
-  float: right;
+  width: 100%;
+  justify-content: flex-end;
   .user-avatar {
-    width: 100px;
-    height: 100px;
-    border-radius: 50%;
-    display: block;
+    @include avatar;
   }
   .message-bubble {
     background-color: lightblue;
-    border-radius: 10px;
-    padding: 20px 25px;
-    margin: 10px;
-    width: 100%;
-    max-width: 500px;
-    position: relative;
+    @include bubble;
     .message {
       font-size: 1.5rem;
       font-weight: 500;
     }
     .message-arrow {
-      position: absolute;
-      width: 0;
-      height: 0;
+      right: -10px;
       border-top: 10px solid transparent;
       border-bottom: 10px solid transparent;
       border-left: 10px solid lightblue;
-      top: 50%;
-      transform: translateY(-50%);
-      right: -10px;
+      @include bubble-arrow;
     }
   }
 }
-
 
 .jeff-response {
   display: flex;
@@ -43,33 +55,33 @@
   width: 90%;
   margin-bottom: 2rem;
   .jeff-avatar {
-    width: 100px;
-    height: 100px;
-    border-radius: 50%;
-    display: block;
+    @include avatar;
   }
   .message-bubble {
     background-color: lightgreen;
-    border-radius: 10px;
-    padding: 20px 25px;
-    margin: 10px;
-    width: 100%;
-    max-width: 500px;
-    position: relative;
+    @include bubble;
     .message {
       font-size: 1.5rem;
       font-weight: 500;
     }
     .message-arrow {
-      position: absolute;
-      width: 0;
-      height: 0;
-border-top: 10px solid transparent;
+      @include bubble-arrow;
+      left: -10px;
+      border-top: 10px solid transparent;
       border-bottom: 10px solid transparent;
       border-right: 10px solid lightgreen;
-      top: 50%;
-      transform: translateY(-50%);
-      left: -10px;
     }
   }
+}
+
+.russian-response {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  width: 90%;
+  margin-bottom: 2rem;
+  color: rgb(150, 150, 150);
+  font-size: 1.5rem;
+  font-weight: 800;
+  text-shadow: 0 1px 0 rgb(255, 255, 255);
 }

@@ -27,7 +27,7 @@ const MainForm = ({ handleSubmit }) => {
       <input
         className="main-input"
         type="text"
-        placeholder=" > Type Here"
+        placeholder="> Type Here"
         value={inputValue}
         onChange={(e) => {
           setInputValue(e.target.value);

@@ -7,6 +7,13 @@ import { puzzle1 } from 'puzzles/puzzle1';
 import Intro from 'views/Intro/Intro';
 import Dialog from 'components/Dialog';
 
+// function return array nums between 19 and 27
+function range(start, end) {
+  return Array(end - start + 1)
+    .fill()
+    .map((_, idx) => start + idx);
+}
+
 export const GameContext = createContext({});
 
 export const GameProvider = ({ children }) => {
@@ -22,7 +29,7 @@ export const GameProvider = ({ children }) => {
     gameStarted: false,
     gameEnded: false,
     currentPuzzle: 0,
-    currentPuzzleIndex: 0,
+    currentPuzzleIndex: 3,
     musicPlaying: false,
   });
 
@@ -47,12 +54,11 @@ export const GameProvider = ({ children }) => {
   );
 
   useEffect(() => {
-    if (gameState.currentExpectedInput === 'username') {
+    if (gameState.currentExpectedInput === 'username' && firstLogin) {
       localStorage.setItem('Jeffusername', gameState.lastInput);
       setGameState({
         ...gameState,
         playerInput: 'username',
-        // gameStarted: true,
       });
       setFirstLogin(false);
     } else if (gameState.currentExpectedInput === '') {
@@ -62,7 +68,22 @@ export const GameProvider = ({ children }) => {
         currentExpectedInput: 'username',
       });
     }
-    console.log('gameState', gameState);
+
+    if (gameState.currentExpectedInput === 'anything') {
+      setGameState({
+        ...gameState,
+        playerInput: 'anything',
+      });
+    }
+
+    if (gameState.currentExpectedInput === 'between') {
+      if (range(19, 27).includes(parseInt(gameState.lastInput.split(' ')[0]))) {
+        setGameState({
+          ...gameState,
+          playerInput: 'between',
+        });
+      }
+    }
 
     // * THIS IS THE FUNCTION THAT GENERATES THE SUCCESS RESPONSE
     const successResponse = () =>
@@ -94,7 +115,6 @@ export const GameProvider = ({ children }) => {
     if (
       gameState.gameStarted &&
       gameState.playerInput === gameState.currentExpectedInput
-      // gameState.playerInput.toLowerCase() !== 'username'
     ) {
       if (successResponse) {
         setGame([...game, <Dialog response={successResponse} />]);
@@ -116,12 +136,16 @@ export const GameProvider = ({ children }) => {
       }
     }
 
+    const inputIgnore = ['anything', 'username', 'between'];
+    const expectedIgnore = ['anything', 'username'];
+
     // * THIS IS THE FUNCTION THAT RUNS WHEN THE PLAYER INPUT EQUALS FAILURE
     if (
       gameState.gameStarted &&
       gameState.playerInput !== gameState.currentExpectedInput &&
-      gameState.currentExpectedResponse !== 'username' &&
-      gameState.playerInput !== 'username' &&
+      !expectedIgnore.includes(gameState.currentExpectedInput) &&
+      !inputIgnore.includes(gameState.playerInput) &&
+      !range(19, 27).includes(parseInt(gameState.lastInput.split(' ')[0])) &&
       gameState.currentPuzzleIndex !== 0
     ) {
       if (failureResponse) {

@@ -31,7 +31,7 @@ function App() {
             style={{
               display: 'flex',
               flexDirection: 'column',
-              padding: '6rem 0 6rem 2rem',
+              padding: '7rem 0 6rem 2rem',
               overflowY: 'auto'
             }}
           >

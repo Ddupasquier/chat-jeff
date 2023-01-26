@@ -1,9 +1,29 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import './responses.scss';
 import { Jeff } from 'assets';
 
-const JeffResponse = ({ response = "Maybe we've got an error here?" }) => {
-  return (
+const JeffResponse = ({
+  response = "Maybe we've got an error here?",
+  reponseLength = null,
+  dialogLength = null,
+}) => {
+  const [typing, setTyping] = useState(true);
+
+  useEffect(() => {
+    console.log('responseLength', reponseLength);
+    console.log('dialogLength', dialogLength);
+
+    if (dialogLength) {
+      setTimeout(() => {
+        setTyping(false);
+      }, dialogLength * 40);
+    }
+    return;
+  }, []);
+
+  return typing ? (
+    'Typing...'
+  ) : (
     <div className="jeff-response">
       <img src={Jeff} alt="jeff" className="jeff-avatar" />
       <div className="message-bubble">
