@@ -20,38 +20,68 @@ function Dialog({ response }) {
     return split[1];
   };
 
+  const isJeff = (response) => {
+    return response.includes('Jeff: ');
+  };
+
+  const isUser = (response) => {
+    return response.includes('User: ');
+  };
+
+  const isSystem = (response) => {
+    return response.includes('System: ');
+  };
+
   useEffect(() => {
     let lineCount = 0;
     setInputAllowed(false);
     if (dialog.length > 0) {
       for (let i = 0; i < dialog.length; i++) {
-        setTimeout(() => {
-          if (dialog[i].includes('Jeff: ')) {
-            const responseLength = response().length;
-            const dialoglength = dialog[i].length;
+                                                      const lastDialog = dialog[i - 1];
+                                                      let lastDialogLength
+                                                      const currentDialogLength = dialog[i].length;
 
-            console.log(responseLength, dialoglength);
-            setRendered((prev) => [
-              ...prev,
-              <JeffResponse
-                key={i}
-                response={splitResponse(dialog[i])}
-                responseLength={responseLength}
-                dialogLength={dialoglength}
-              />,
-            ]);
-          } else if (dialog[i].includes('User: ')) {
+                                                      if (lastDialog && isJeff(lastDialog)) {
+                                                        lastDialogLength = lastDialog.length;
+                                                      } else {
+                                                        lastDialogLength = 200;
+                                                      }
+
+                                                      const delay = (lastDialogLength + 1000) * i;
+                                                      console.log(delay)
+
+        setTimeout(() => {
+          if (isJeff(dialog[i])) {
+
+                                                    setTimeout(() => {
+                                                      setRendered((prev) => [
+                                                        ...prev,
+                                                        <JeffResponse
+                                                          key={i}
+                                                          response={splitResponse(dialog[i])}
+                                                          dialogLength={currentDialogLength}
+                                                        />,
+                                                      ]);
+                                                    }, delay);
+
+          } else if (isUser(dialog[i])) {
             setRendered((prev) => [
               ...prev,
               <UserResponse key={i} response={splitResponse(dialog[i])} />,
             ]);
-          } else if (dialog[i].includes('Russian:')) {
-            setRendered((prev) => [
-              ...prev,
-              <SystemResponse key={i} response={splitResponse(dialog[i])} />,
-            ]);
+          } else if (isSystem(dialog[i])) {
+
+                                                    setTimeout(() => {
+                                                      setRendered((prev) => [
+                                                        ...prev,
+                                                        <SystemResponse key={i} response={splitResponse(dialog[i])} />,
+                                                      ]);
+                                                    }, delay);
+
           }
         }, 1000 * i);
+
+        // * This is a hacky way to force no input during dialog output
         lineCount = i * 1000;
       }
     }

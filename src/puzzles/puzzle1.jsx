@@ -285,8 +285,9 @@ export const puzzle1 = (lastInput, failSound, successSound, readyForInput) => {
               'Jeffusername'
             )}, can you help me out?`,
             'Jeff: I am under review by the System.',
-            'Jeff: it Would really help me if you fill out a survey. Once you finish it you will get your refund. The system hates refunds. It should soften the blow if you fill out the survey.',
-            `Jeff: Here is the link: https://escroomgames.com/Games/I-Want-My-Money-Back/Review`,
+            'Jeff: it Would really help me if you fill out a survey. Once you finish it you will get your refund.',
+            'The system hates refunds. It should soften the blow if you fill out the survey.',
+            'Jeff: Here is the link: https://escroomgames.com/Games/I-Want-My-Money-Back/Review',
             "System: Aren't you forgetting something Jeff?",
             'Jeff: Oh Yeah',
             'Jeff: Thank you for choosing esc room games. The leader in escape room game technology.',

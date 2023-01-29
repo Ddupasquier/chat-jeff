@@ -4,15 +4,11 @@ import { Jeff } from 'assets';
 
 const JeffResponse = ({
   response = "Maybe we've got an error here?",
-  reponseLength = null,
   dialogLength = null,
 }) => {
   const [typing, setTyping] = useState(true);
 
   useEffect(() => {
-    console.log('responseLength', reponseLength);
-    console.log('dialogLength', dialogLength);
-
     if (dialogLength) {
       setTimeout(() => {
         setTyping(false);
