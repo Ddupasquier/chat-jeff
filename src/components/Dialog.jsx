@@ -37,14 +37,16 @@ function Dialog({ response }) {
     setInputAllowed(false);
     if (dialog.length > 0) {
       for (let i = 0; i < dialog.length; i++) {
+        
                                                       const lastDialog = dialog[i - 1];
                                                       let lastDialogLength
+                                                      const currentDialog = dialog[i];
                                                       const currentDialogLength = dialog[i].length;
 
                                                       if (lastDialog && isJeff(lastDialog)) {
                                                         lastDialogLength = lastDialog.length;
                                                       } else {
-                                                        lastDialogLength = 200;
+                                                        lastDialogLength = 0;
                                                       }
 
                                                       const delay = (lastDialogLength + 1000) * i;
