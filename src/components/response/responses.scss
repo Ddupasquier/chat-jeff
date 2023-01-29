@@ -74,7 +74,7 @@
   }
 }
 
-.system-response {
+.system-response, .typing {
   display: flex;
   align-items: center;
   gap: 2rem;
@@ -84,4 +84,8 @@
   font-size: 1.5rem;
   font-weight: 800;
   text-shadow: 0 1px 0 rgb(255, 255, 255);
+}
+
+.typing {
+  gap: 0;
 }

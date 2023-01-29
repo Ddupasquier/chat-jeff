@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import './responses.scss';
 import { Jeff } from 'assets';
+import EllipsesAnimation from 'components/animations/EllipsesAnimation';
 
 const JeffResponse = ({
   response = "Maybe we've got an error here?",
@@ -15,11 +16,14 @@ const JeffResponse = ({
       }, dialogLength * 40);
     }
     return;
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return typing ? (
-    'Typing...'
+    <div className="typing">
+      Typing
+      <EllipsesAnimation />
+    </div>
   ) : (
     <div className="jeff-response">
       <img src={Jeff} alt="jeff" className="jeff-avatar" />

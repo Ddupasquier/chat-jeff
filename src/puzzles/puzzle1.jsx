@@ -15,8 +15,7 @@ export const puzzle1 = (lastInput, failSound, successSound, readyForInput) => {
         responses: {
           successResponse: [
             `User: ${lastInput}`,
-            `Jeff: It's nice to meet you ${lastInput}. What can I help you with today?`,
-            () => readyForInput.play(),
+            `Jeff: It's nice to meet you ${lastInput}. What can I help you with today?`
           ],
           failureResponse: [],
         },
@@ -31,8 +30,7 @@ export const puzzle1 = (lastInput, failSound, successSound, readyForInput) => {
             `User: ${lastInput}`,
             () => failSound.play(),
             'System: Language not recognized. Would you like to continue in Russian? Enter да or No.',
-            `Jeff: I'm sorry there seems to be a problem with our language recognition. Would you mind entering 'No' please? I can't address this from my end.`,
-            () => readyForInput.play(),
+            `Jeff: I'm sorry there seems to be a problem with our language recognition. Would you mind entering 'No' please? I can't address this from my end.`
           ],
           failureResponse: [],
         },
@@ -49,8 +47,7 @@ export const puzzle1 = (lastInput, failSound, successSound, readyForInput) => {
             'System: Language not recognized.',
             'System: Пожалуйста, введите желаемый язык',
             'Jeff: UH OH...I think that made it worse',
-            'Jeff: I apologize for the inconvenience. Can you please enter the Russian word for English? That seems to be the only way the system will respond...',
-            () => readyForInput.play(),
+            'Jeff: I apologize for the inconvenience. Can you please enter the Russian word for English? That seems to be the only way the system will respond...'
           ],
           failureResponse: [],
         },
@@ -66,8 +63,7 @@ export const puzzle1 = (lastInput, failSound, successSound, readyForInput) => {
             () => failSound.play(),
             'System: Am bu mhath leat leantainn air adhart sa chànan seo?',
             'Jeff: Hmmm... that did something...',
-            'Jeff: But I have no idea what that says.',
-            () => readyForInput.play(),
+            'Jeff: But I have no idea what that says.'
           ],
           failureResponse: [
             `User: ${lastInput}`,
@@ -76,8 +72,7 @@ export const puzzle1 = (lastInput, failSound, successSound, readyForInput) => {
             'System: Пожалуйста, введите желаемый язык',
             'Jeff: Hmmm... That doesnt seem right...',
             'Jeff: I took 3 years of russian in college. I think the russian word for english is английский.',
-            'Jeff: I usually just used google translate to get though that class.',
-            () => readyForInput.play(),
+            'Jeff: I usually just used google translate to get though that class.'
           ],
         },
       },
@@ -92,8 +87,7 @@ export const puzzle1 = (lastInput, failSound, successSound, readyForInput) => {
             () => failSound.play(),
             'System: 这种语言怎么样?',
             'Jeff: Looks like we might be getting somewhere!',
-            'Jeff: Keep Going',
-            () => readyForInput.play(),
+            'Jeff: Keep Going'
           ],
           failureResponse: languagePuzzleFail,
         },
@@ -109,8 +103,7 @@ export const puzzle1 = (lastInput, failSound, successSound, readyForInput) => {
             () => failSound.play(),
             'System: Markaas luqadee rabtaa?!',
             'Jeff: Its working!',
-            'Jeff: Try to do that one now.',
-            () => readyForInput.play(),
+            'Jeff: Try to do that one now.'
           ],
           failureResponse: languagePuzzleFail,
         },
@@ -140,8 +133,7 @@ export const puzzle1 = (lastInput, failSound, successSound, readyForInput) => {
             `User: ${lastInput}`,
             () => successSound.play(),
             'System: Esc Room Games customer AI Program reset',
-            "Jeff: Hello, I'm jeff. What can I help you with today?",
-            () => readyForInput.play(),
+            "Jeff: Hello, I'm jeff. What can I help you with today?"
           ],
           failureResponse: languagePuzzleFail,
         },
@@ -155,8 +147,7 @@ export const puzzle1 = (lastInput, failSound, successSound, readyForInput) => {
           successResponse: [
             `User: ${lastInput}`,
             'Jeff: I can certainly help you with that.',
-            "Jeff: I'll just need to verify your identity. Please enter your first and last name.",
-            () => readyForInput.play(),
+            "Jeff: I'll just need to verify your identity. Please enter your first and last name."
           ],
           failureResponse: [],
         },
@@ -169,8 +160,7 @@ export const puzzle1 = (lastInput, failSound, successSound, readyForInput) => {
         responses: {
           successResponse: [
             `User: ${lastInput}`,
-            "Jeff: Fantastic. It's a pleasure to meet you. We have a few more questions for you. First, can you tell me what the name of your first pet was?",
-            () => readyForInput.play(),
+            "Jeff: Fantastic. It's a pleasure to meet you. We have a few more questions for you. First, can you tell me what the name of your first pet was?"
           ],
           failureResponse: [],
         },
@@ -184,8 +174,7 @@ export const puzzle1 = (lastInput, failSound, successSound, readyForInput) => {
           successResponse: [
             `User: ${lastInput}`,
             'Jeff: Adorable.',
-            'Jeff: Next, what is your mothers maiden name?',
-            () => readyForInput.play(),
+            'Jeff: Next, what is your mothers maiden name?'
           ],
           failureResponse: [],
         },
@@ -199,8 +188,7 @@ export const puzzle1 = (lastInput, failSound, successSound, readyForInput) => {
           successResponse: [
             `User: ${lastInput}`,
             "Jeff: Beautiful... isn't that Russian?",
-            'Jeff: Next, in what city are you located?',
-            () => readyForInput.play(),
+            'Jeff: Next, in what city are you located?'
           ],
           failureResponse: [],
         },
@@ -214,8 +202,7 @@ export const puzzle1 = (lastInput, failSound, successSound, readyForInput) => {
           successResponse: [
             `User: ${lastInput}`,
             'Jeff: Thank you. Just a few more questions.',
-            'Jeff: What is the airspeed velocity, in miles per hour, of an Unladen Swallow?',
-            () => readyForInput.play(),
+            'Jeff: What is the airspeed velocity, in miles per hour, of an Unladen Swallow?'
           ],
           failureResponse: [],
         },
@@ -231,8 +218,7 @@ export const puzzle1 = (lastInput, failSound, successSound, readyForInput) => {
             'Jeff: hmm...',
             "Jeff: That's not what I have here...",
             'Jeff: but I understand there are variations between species.',
-            'Jeff: Next Question. What is the power house of the cell?',
-            () => readyForInput.play(),
+            'Jeff: Next Question. What is the power house of the cell?'
           ],
           failureResponse: [],
         },
@@ -247,8 +233,7 @@ export const puzzle1 = (lastInput, failSound, successSound, readyForInput) => {
             `User: ${lastInput}`,
             'Jeff: Correct!',
             'Jeff: Just a few more.',
-            'Jeff: In hours, how long would it take for you to walk across America if your average speed was 5mph?',
-            () => readyForInput.play(),
+            'Jeff: In hours, how long would it take for you to walk across America if your average speed was 5mph?'
           ],
           failureResponse: [`User: ${lastInput}`, 'Jeff: Wrong!'],
         },
@@ -263,8 +248,7 @@ export const puzzle1 = (lastInput, failSound, successSound, readyForInput) => {
             `User: ${lastInput}`,
             'Jeff: Very good!',
             'Jeff: Last but certainly not least...',
-            'Jeff: What exactly is the purpose of a rubber duck?',
-            () => readyForInput.play(),
+            'Jeff: What exactly is the purpose of a rubber duck?'
           ],
           failureResponse: [`User: ${lastInput}`, 'Jeff: Wrong!'],
         },
@@ -287,7 +271,8 @@ export const puzzle1 = (lastInput, failSound, successSound, readyForInput) => {
             'Jeff: I am under review by the System.',
             'Jeff: it Would really help me if you fill out a survey. Once you finish it you will get your refund.',
             'The system hates refunds. It should soften the blow if you fill out the survey.',
-            'Jeff: Here is the link: https://escroomgames.com/Games/I-Want-My-Money-Back/Review',
+            'Jeff: Here is the link...',
+            'Jeff: https://escroomgames.com/Games/I-Want-My-Money-Back/Review',
             "System: Aren't you forgetting something Jeff?",
             'Jeff: Oh Yeah',
             'Jeff: Thank you for choosing esc room games. The leader in escape room game technology.',

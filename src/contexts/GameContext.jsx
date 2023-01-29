@@ -28,7 +28,7 @@ export const GameProvider = ({ children }) => {
     gameStarted: false,
     gameEnded: false,
     currentPuzzle: 0,
-    currentPuzzleIndex: 0,
+    currentPuzzleIndex: 16,
     musicPlaying: false,
   });
 

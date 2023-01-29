@@ -21,15 +21,19 @@ function Dialog({ response }) {
   };
 
   const isJeff = (response) => {
-    return response.includes('Jeff: ');
+    return response && response.includes('Jeff: ');
   };
 
   const isUser = (response) => {
-    return response.includes('User: ');
+    return response && response.includes('User: ');
   };
 
   const isSystem = (response) => {
-    return response.includes('System: ');
+    return response && response.includes('System: ');
+  };
+
+  const containsLink = (response) => {
+    return response && response.includes('http');
   };
 
   useEffect(() => {
@@ -38,9 +42,9 @@ function Dialog({ response }) {
     setInputAllowed(false);
     if (dialog.length > 0) {
       for (let i = 0; i < dialog.length; i++) {
-        const lastDialog = dialog[i - 1];
+        const lastDialog = dialog[i - 1] ? dialog[i - 1] : '';
         let lastDialogLength;
-        const currentDialogLength = dialog[i].length;
+        const currentDialogLength = dialog[i] ? dialog[i].length : 0;
 
         if (lastDialog && isJeff(lastDialog)) {
           lastDialogLength = lastDialog.length * 40;
@@ -48,18 +52,37 @@ function Dialog({ response }) {
           lastDialogLength = 0;
         }
 
-        totalDelay += (lastDialogLength + 1500);
+        totalDelay += lastDialogLength + 1500;
 
         if (isJeff(dialog[i])) {
           setTimeout(() => {
-            setRendered((prev) => [
-              ...prev,
-              <JeffResponse
-                key={i}
-                response={splitResponse(dialog[i])}
-                dialogLength={currentDialogLength}
-              />,
-            ]);
+            if (containsLink(dialog[i])) {
+              setRendered((prev) => [
+                ...prev,
+                <JeffResponse
+                  key={i}
+                  response={
+                    <a
+                      href={splitResponse(dialog[i])}
+                      target="_blank"
+                      rel="noreferrer"
+                    >
+                      Link
+                    </a>
+                  }
+                  dialogLength={currentDialogLength}
+                />,
+              ]);
+            } else {
+              setRendered((prev) => [
+                ...prev,
+                <JeffResponse
+                  key={i}
+                  response={splitResponse(dialog[i])}
+                  dialogLength={currentDialogLength}
+                />,
+              ]);
+            }
           }, totalDelay);
         } else if (isUser(dialog[i])) {
           setRendered((prev) => [
