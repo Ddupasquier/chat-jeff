@@ -7,7 +7,6 @@ import { puzzle1 } from 'puzzles/puzzle1';
 import Intro from 'views/Intro/Intro';
 import Dialog from 'components/Dialog';
 
-// function return array nums between 19 and 27
 function range(start, end) {
   return Array(end - start + 1)
     .fill()
@@ -29,7 +28,7 @@ export const GameProvider = ({ children }) => {
     gameStarted: false,
     gameEnded: false,
     currentPuzzle: 0,
-    currentPuzzleIndex: 16,
+    currentPuzzleIndex: 0,
     musicPlaying: false,
   });
 

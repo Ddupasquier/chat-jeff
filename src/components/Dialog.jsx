@@ -33,64 +33,53 @@ function Dialog({ response }) {
   };
 
   useEffect(() => {
-    let lineCount = 0;
+    let totalDelay = 0;
+
     setInputAllowed(false);
     if (dialog.length > 0) {
       for (let i = 0; i < dialog.length; i++) {
-        
-                                                      const lastDialog = dialog[i - 1];
-                                                      let lastDialogLength
-                                                      const currentDialog = dialog[i];
-                                                      const currentDialogLength = dialog[i].length;
+        const lastDialog = dialog[i - 1];
+        let lastDialogLength;
+        const currentDialogLength = dialog[i].length;
 
-                                                      if (lastDialog && isJeff(lastDialog)) {
-                                                        lastDialogLength = lastDialog.length;
-                                                      } else {
-                                                        lastDialogLength = 0;
-                                                      }
+        if (lastDialog && isJeff(lastDialog)) {
+          lastDialogLength = lastDialog.length * 40;
+        } else {
+          lastDialogLength = 0;
+        }
 
-                                                      const delay = (lastDialogLength + 1000) * i;
-                                                      console.log(delay)
+        totalDelay += (lastDialogLength + 1500);
 
-        setTimeout(() => {
-          if (isJeff(dialog[i])) {
-
-                                                    setTimeout(() => {
-                                                      setRendered((prev) => [
-                                                        ...prev,
-                                                        <JeffResponse
-                                                          key={i}
-                                                          response={splitResponse(dialog[i])}
-                                                          dialogLength={currentDialogLength}
-                                                        />,
-                                                      ]);
-                                                    }, delay);
-
-          } else if (isUser(dialog[i])) {
+        if (isJeff(dialog[i])) {
+          setTimeout(() => {
             setRendered((prev) => [
               ...prev,
-              <UserResponse key={i} response={splitResponse(dialog[i])} />,
+              <JeffResponse
+                key={i}
+                response={splitResponse(dialog[i])}
+                dialogLength={currentDialogLength}
+              />,
             ]);
-          } else if (isSystem(dialog[i])) {
-
-                                                    setTimeout(() => {
-                                                      setRendered((prev) => [
-                                                        ...prev,
-                                                        <SystemResponse key={i} response={splitResponse(dialog[i])} />,
-                                                      ]);
-                                                    }, delay);
-
-          }
-        }, 1000 * i);
-
-        // * This is a hacky way to force no input during dialog output
-        lineCount = i * 1000;
+          }, totalDelay);
+        } else if (isUser(dialog[i])) {
+          setRendered((prev) => [
+            ...prev,
+            <UserResponse key={i} response={splitResponse(dialog[i])} />,
+          ]);
+        } else if (isSystem(dialog[i])) {
+          setTimeout(() => {
+            setRendered((prev) => [
+              ...prev,
+              <SystemResponse key={i} response={splitResponse(dialog[i])} />,
+            ]);
+          }, totalDelay);
+        }
       }
     }
     if (dialog.length > 0) {
       setTimeout(() => {
         setInputAllowed(true);
-      }, lineCount);
+      }, dialog.length * 1000);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [dialog]);
