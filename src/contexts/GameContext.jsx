@@ -32,6 +32,10 @@ export const GameProvider = ({ children }) => {
     musicPlaying: false,
   });
 
+  const inputReady = () => {
+    setInputAllowed(true);
+  }
+
   useEffect(() => {
     setStartTime(Date.now());
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -45,7 +49,8 @@ export const GameProvider = ({ children }) => {
           gameState.lastInput,
           failSound,
           successSound,
-          readyForInput
+          readyForInput,
+          inputReady
         ),
       },
     ],
@@ -76,7 +81,7 @@ export const GameProvider = ({ children }) => {
     }
 
     if (gameState.currentExpectedInput === 'between') {
-      if (range(19, 27).includes(parseInt(gameState.lastInput.split(' ')[0]))) {
+      if (range(400, 600).includes(parseInt(gameState.lastInput.split(' ')[0]))) {
         setGameState({
           ...gameState,
           playerInput: 'between',

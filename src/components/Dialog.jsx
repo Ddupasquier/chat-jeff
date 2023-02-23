@@ -5,6 +5,8 @@ import UserResponse from './response/UserResponse';
 import JeffResponse from './response/JeffResponse';
 import SystemResponse from './response/SystemResponse';
 
+import { failSound, readyForInput } from 'sounds/sounds';
+
 function Dialog({ response }) {
   const { gameHidden, setInputAllowed } = useContext(GameContext);
   const [dialog, setDialog] = useState([]);
@@ -12,8 +14,7 @@ function Dialog({ response }) {
 
   useEffect(() => {
     setDialog(response);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [response]);
 
   const splitResponse = (response) => {
     const split = response.split(': ');
@@ -89,20 +90,17 @@ function Dialog({ response }) {
             ...prev,
             <UserResponse key={i} response={splitResponse(dialog[i])} />,
           ]);
+          readyForInput.play();
         } else if (isSystem(dialog[i])) {
           setTimeout(() => {
             setRendered((prev) => [
               ...prev,
               <SystemResponse key={i} response={splitResponse(dialog[i])} />,
             ]);
+            failSound.play();
           }, totalDelay);
         }
       }
-    }
-    if (dialog.length > 0) {
-      setTimeout(() => {
-        setInputAllowed(true);
-      }, dialog.length * 1000);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [dialog]);
@@ -110,7 +108,9 @@ function Dialog({ response }) {
   const messagesEndRef = useRef(null);
 
   useEffect(() => {
-    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+    messagesEndRef.current?.scrollIntoView({
+      behavior: 'smooth',
+    });
   }, [rendered]);
 
   return (

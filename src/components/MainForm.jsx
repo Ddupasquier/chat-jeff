@@ -1,4 +1,4 @@
-import React, { useEffect, useContext } from 'react';
+import React, { useContext } from 'react';
 import { GameContext } from 'contexts/GameContext';
 
 const MainForm = ({ handleSubmit }) => {
@@ -13,14 +13,6 @@ const MainForm = ({ handleSubmit }) => {
       e.preventDefault();
     }
   };
-
-  useEffect(() => {
-    const audio = new Audio(
-      'https://cia-9d562a98.s3.us-west-1.amazonaws.com/GameAssets/SoundFX/Daffodil362KeyPress.wav'
-    );
-    audio.volume = 0.6;
-    audio.play();
-  }, [inputValue]);
 
   return (
     <form>

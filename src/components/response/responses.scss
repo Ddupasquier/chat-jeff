@@ -29,11 +29,13 @@
   width: 100%;
   justify-content: flex-end;
   .user-avatar {
+    padding-right: 2rem;
     @include avatar;
   }
   .message-bubble {
     background-color: lightblue;
     @include bubble;
+    width: fit-content;
     .message {
       font-size: 1.5rem;
       font-weight: 500;
@@ -52,7 +54,7 @@
   display: flex;
   align-items: center;
   gap: 2rem;
-  width: 90%;
+  width: fit-content;
   margin-bottom: 2rem;
   .jeff-avatar {
     @include avatar;

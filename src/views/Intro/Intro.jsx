@@ -11,6 +11,7 @@ const Intro = () => {
     }, 4000);
     return;
   }, []);
+
   return (
     <>
       {shown && (
