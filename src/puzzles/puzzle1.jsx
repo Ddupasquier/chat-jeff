@@ -1,8 +1,9 @@
-export const puzzle1 = (lastInput, failSound, successSound, readyForInput, inputReady) => {
+export const puzzle1 = (lastInput, failSound, successSound, inputReady) => {
   const languagePuzzleFail = [
     [
       () => failSound.play(),
-      "Jeff: The system doesn't seem to know what you're trying to say. Maybe try google translate or something? I don't know."
+      "Jeff: The system doesn't seem to know what you're trying to say. Maybe try google translate or something? I don't know.",
+      () => inputReady(),
     ],
   ];
 
@@ -17,7 +18,7 @@ export const puzzle1 = (lastInput, failSound, successSound, readyForInput, input
             `Jeff: It's nice to meet you ${lastInput}. What can I help you with today?`,
             () => inputReady(),
           ],
-          failureResponse: [],
+          failureResponse: [() => inputReady()],
         },
       },
     },
@@ -33,7 +34,7 @@ export const puzzle1 = (lastInput, failSound, successSound, readyForInput, input
             `Jeff: I'm sorry there seems to be a problem with our language recognition. Would you mind entering 'No' please? I can't address this from my end.`,
             () => inputReady(),
           ],
-          failureResponse: [],
+          failureResponse: [() => inputReady()],
         },
       },
     },
@@ -49,9 +50,9 @@ export const puzzle1 = (lastInput, failSound, successSound, readyForInput, input
             'System: Пожалуйста, введите желаемый язык',
             'Jeff: UH OH...I think that made it worse',
             'Jeff: I apologize for the inconvenience. Can you please enter the Russian word for English? That seems to be the only way the system will respond...',
-            () => inputReady()
+            () => inputReady(),
           ],
-          failureResponse: [],
+          failureResponse: [() => inputReady()],
         },
       },
     },
@@ -66,7 +67,7 @@ export const puzzle1 = (lastInput, failSound, successSound, readyForInput, input
             'System: Am bu mhath leat leantainn air adhart sa chànan seo?',
             'Jeff: Hmmm... that did something...',
             'Jeff: But I have no idea what that says.',
-            () => inputReady()
+            () => inputReady(),
           ],
           failureResponse: [
             `User: ${lastInput}`,
@@ -76,7 +77,7 @@ export const puzzle1 = (lastInput, failSound, successSound, readyForInput, input
             'Jeff: Hmmm... That doesnt seem right...',
             'Jeff: I took 3 years of russian in college. I think the russian word for english is английский.',
             'Jeff: I usually just used google translate to get though that class.',
-            () => inputReady()
+            () => inputReady(),
           ],
         },
       },
@@ -92,7 +93,7 @@ export const puzzle1 = (lastInput, failSound, successSound, readyForInput, input
             'System: 这种语言怎么样?',
             'Jeff: Looks like we might be getting somewhere!',
             'Jeff: Keep Going',
-            () => inputReady()
+            () => inputReady(),
           ],
           failureResponse: languagePuzzleFail,
         },
@@ -108,7 +109,7 @@ export const puzzle1 = (lastInput, failSound, successSound, readyForInput, input
             'System: Markaas luqadee rabtaa?!',
             'Jeff: Its working!',
             'Jeff: Try to do that one now.',
-            () => inputReady()
+            () => inputReady(),
           ],
           failureResponse: languagePuzzleFail,
         },
@@ -123,7 +124,7 @@ export const puzzle1 = (lastInput, failSound, successSound, readyForInput, input
             `User: ${lastInput}`,
             'System: ຂ້ອຍບໍ່ເຂົ້າໃຈ. ກະລຸນາພິມພາສາທີ່ທ່ານຕ້ອງການເປັນພາສາອາຣັບ',
             'Jeff: Looks like we might be getting somewhere!',
-            () => inputReady()
+            () => inputReady(),
           ],
           failureResponse: languagePuzzleFail,
         },
@@ -139,7 +140,7 @@ export const puzzle1 = (lastInput, failSound, successSound, readyForInput, input
             () => successSound.play(),
             'System: Esc Room Games customer AI Program reset',
             "Jeff: Hello, I'm jeff. What can I help you with today?",
-            () => inputReady()
+            () => inputReady(),
           ],
           failureResponse: languagePuzzleFail,
         },
@@ -154,9 +155,9 @@ export const puzzle1 = (lastInput, failSound, successSound, readyForInput, input
             `User: ${lastInput}`,
             'Jeff: I can certainly help you with that.',
             "Jeff: I'll just need to verify your identity. Please enter your first and last name.",
-            () => inputReady()
+            () => inputReady(),
           ],
-          failureResponse: [],
+          failureResponse: [() => inputReady()],
         },
       },
     },
@@ -168,9 +169,9 @@ export const puzzle1 = (lastInput, failSound, successSound, readyForInput, input
           successResponse: [
             `User: ${lastInput}`,
             "Jeff: Fantastic. It's a pleasure to meet you. We have a few more questions for you. First, can you tell me what the name of your first pet was?",
-            () => inputReady()
+            () => inputReady(),
           ],
-          failureResponse: [],
+          failureResponse: [() => inputReady()],
         },
       },
     },
@@ -183,9 +184,9 @@ export const puzzle1 = (lastInput, failSound, successSound, readyForInput, input
             `User: ${lastInput}`,
             'Jeff: Adorable.',
             'Jeff: Next, what is your mothers maiden name?',
-            () => inputReady()
+            () => inputReady(),
           ],
-          failureResponse: [],
+          failureResponse: [() => inputReady()],
         },
       },
     },
@@ -198,9 +199,9 @@ export const puzzle1 = (lastInput, failSound, successSound, readyForInput, input
             `User: ${lastInput}`,
             "Jeff: Beautiful... isn't that Russian?",
             'Jeff: Next, in what city are you located?',
-            () => inputReady()
+            () => inputReady(),
           ],
-          failureResponse: [],
+          failureResponse: [() => inputReady()],
         },
       },
     },
@@ -213,9 +214,9 @@ export const puzzle1 = (lastInput, failSound, successSound, readyForInput, input
             `User: ${lastInput}`,
             'Jeff: Thank you. Just a few more questions.',
             'Jeff: What is the airspeed velocity, in miles per hour, of an Unladen Swallow?',
-            () => inputReady()
+            () => inputReady(),
           ],
-          failureResponse: [],
+          failureResponse: [() => inputReady()],
         },
       },
     },
@@ -230,9 +231,9 @@ export const puzzle1 = (lastInput, failSound, successSound, readyForInput, input
             "Jeff: That's not what I have here...",
             'Jeff: but I understand there are variations between species.',
             'Jeff: Next Question. What is the power house of the cell?',
-            () => inputReady()
+            () => inputReady(),
           ],
-          failureResponse: [],
+          failureResponse: [() => inputReady()],
         },
       },
     },
@@ -246,9 +247,13 @@ export const puzzle1 = (lastInput, failSound, successSound, readyForInput, input
             'Jeff: Correct!',
             'Jeff: Just a few more.',
             'Jeff: In hours, how long would it take for you to walk across America if your average speed was 5mph?',
-            () => inputReady()
+            () => inputReady(),
           ],
-          failureResponse: [`User: ${lastInput}`, 'Jeff: Wrong!'],
+          failureResponse: [
+            `User: ${lastInput}`,
+            'Jeff: Wrong!',
+            () => inputReady(),
+          ],
         },
       },
     },
@@ -262,9 +267,13 @@ export const puzzle1 = (lastInput, failSound, successSound, readyForInput, input
             'Jeff: Very good!',
             'Jeff: Last but certainly not least...',
             'Jeff: What exactly is the purpose of a rubber duck?',
-            () => inputReady()
+            () => inputReady(),
           ],
-          failureResponse: [`User: ${lastInput}`, 'Jeff: Wrong!'],
+          failureResponse: [
+            `User: ${lastInput}`,
+            'Jeff: Wrong!',
+            () => inputReady(),
+          ],
         },
       },
     },
@@ -297,9 +306,9 @@ export const puzzle1 = (lastInput, failSound, successSound, readyForInput, input
             `Jeff: https://escroomgames.com/Games/I-Want-My-Money-Back/you-will-be-redirected-shortly`,
             'System: Good',
             "System: Thank you user. We hope you will reconsider getting a refund… for Jeff's sake…",
-            'System: You have been disconnected from the chat.'
+            'System: You have been disconnected from the chat.',
           ],
-          failureResponse: [],
+          failureResponse: [() => inputReady()],
         },
       },
     },
