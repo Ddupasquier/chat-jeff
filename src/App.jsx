@@ -38,7 +38,7 @@ function App() {
             {game &&
               !gameState.gameEnded &&
               game.map((view, index) => <div key={index}>{view}</div>)}
-            <div ref={messagesEndRef} className="red-div"/>
+            <div ref={messagesEndRef} className="ref-div"/>
           </div>
         </>
       </div>
